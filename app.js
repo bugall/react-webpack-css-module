@@ -4,7 +4,7 @@ var rewrite = require('express-urlrewrite')
 var webpack = require('webpack')
 var webpackDevMiddleware = require('webpack-dev-middleware')
 var WebpackConfig = require('./webpack.config')
-
+var http = require('http');
 var app = express()
 
 app.use(webpackDevMiddleware(webpack(WebpackConfig), {
@@ -23,6 +23,21 @@ fs.readdirSync(__dirname).forEach(function (file) {
 })
 
 app.use(express.static(__dirname))
+
+app.use('/api',function(req, res){
+  var host = 'localhost';
+  var port = '5001';
+  var options = {
+    host: host,
+    port: port,
+    path: req.url,
+    method: req.method
+  };
+  http.request(options, function(response) {
+    res.set(response.headers);
+    response.pipe(res);
+  }).end();
+});
 
 app.listen(8080, function () {
   console.log('Server listening on http://localhost:8080, Ctrl+C to stop')
