@@ -1,6 +1,6 @@
 import React,{Component}from 'react';
 import ReactDOM from 'react-dom';
-import styles from '../../css/nav/login.css';
+import styles from '../../css/login/login.css';
 
 export class login extends Component{
   render(){

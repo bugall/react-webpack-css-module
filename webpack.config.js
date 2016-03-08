@@ -8,11 +8,11 @@ module.exports = {
   entry: {
     index:['./src/js/index/index.js'],
     nav:['./src/js/nav/nav.js'],
-    enter:['./src/js/entry.js']
+    entry:['./src/js/entry.js']
   },
   output: {
-    path: path.resolve('./assets/js'),
-    filename: '[name].bundle.js'
+    path: path.resolve('build'),
+    filename: '[name].bundle.js',
   },
   resolve: {
     extensions: ['', '.js', '.jsx']
